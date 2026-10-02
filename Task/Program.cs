@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Numerics;
 using static System.Runtime.InteropServices.JavaScript.JSType;
  using static Task.ListGenerators;
@@ -149,7 +150,165 @@ namespace Task
             //}
             #endregion
 
+            #region LINQ - Ordering Operators
+            //1. Sort a list of products by name
+            //var result = ProductList.OrderBy(e => e.ProductName);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item.ProductName);
+            //}
+            //--------------------------------------------------------------
+
+            //2. Uses a custom comparer to do a case-insensitive sort of the words in an array.
+            //string[] Arr = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
+            //var result = Arr.OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //--------------------------------------------------------------
+
+            //3. Sort a list of products by units in stock from highest to lowest. 
+            //var result = ProductList.OrderByDescending(p => p.UnitsInStock);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //--------------------------------------------------------------
+
+            //6.Sort a list of products, first by category, and then by unit price, from highest to lowest.
+            //var result = ProductList.OrderBy(p => p.Category).ThenByDescending(p => p.UnitPrice);
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //--------------------------------------------------------------
+
+            //string[] Arr = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+            //var result = Arr.Where(x => x.Length > 1 && x[1] == 'i').Reverse().ToList();
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+
+            #endregion
+
+            #region LINQ - Aggregate Operators
+
+            //1. Uses Count to get the number of odd numbers in the array.
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //int count = Arr.Count(x => x % 2 != 0);
+            //Console.WriteLine($"Number of odd numbers: {count}");
+            //--------------------------------------------------------------
+
+            //2.Return a list of customers and how many orders each has. 
+            //var result = CustomerList.Select(c => new
+            //{
+            //    CustomerName = c.Name,
+            //    OrdersCount = c.Orders.Count()
+            //});
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine( $"Customer: {item.CustomerName}, Orders: {item.OrdersCount}" );
+            //       
+            //   
+            //}
+            //--------------------------------------------------------------
+
+            //4. Get the total of the numbers in an array.
+            //int[] Arr = { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+            //int total = Arr.Sum();
+            //Console.WriteLine($"Total: {total}");
+            //-------------------------------------------------------------
+
+            //6. Get the total units in stock for each product category.
+
+            //var result = ProductList.GroupBy(p => p.Category).Select(g => new
+            //{
+            //    Category = g.Key,
+            //    TotalUnitsInStock = g.Sum(p => p.UnitsInStock)
+            //});
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"Category: {item.Category}, Total Units: {item.TotalUnitsInStock}");
+            //}
+            //--------------------------------------------------------------
+
+            //8.Get the cheapest price among each category's products
+            //var result = ProductList.GroupBy(p => p.Category).Select(g => new
+            //{
+            //    Category = g.Key,
+            //    CheapestPrice = g.Min(p => p.UnitPrice)
+            //});
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"Category: {item.Category}, Cheapest Price: {item.CheapestPrice}" );
+            //        
+            //   
+            //}
+            //-------------------------------------------------------------
+
+            //9. Get the products with the cheapest price in each category (Use Let)
+
+            //var result = from p in ProductList
+            //             group p by p.Category into g
+            //             let MinPrice = g.Min(p => p.UnitPrice)
+            //             from product in g
+            //             where product.UnitPrice == MinPrice
+            //             select product;
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //-------------------------------------------------------------
+
+            //11. Get the most expensive price among each category's products.
+
+            //var result = ProductList.GroupBy(p => p.Category).Select(g => new
+            //{
+            //    Category = g.Key,
+            //    ExpensivePrice = g.Max(p => p.UnitPrice)
+            //});
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"Category: {item.Category},  Expensive Price: {item.ExpensivePrice}");
+            // 
+            //
+            //}
+            //-------------------------------------------------------------
+
+            //12. Get the products with the most expensive price in each category.
+
+            //var result = ProductList.GroupBy(p => p.Category)
+            //    .SelectMany(g => g.Where(p => p.UnitPrice == g.Max(x => x.UnitPrice)));
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //-------------------------------------------------------------
+
+            //14. Get the average price of each category's products.
+
+            //var result = ListGenerators.ProductList.GroupBy(p => p.Category).Select(g => new
+            //{
+            //    Category = g.Key,
+            //    AveragePrice = g.Average(p => p.UnitPrice)
+            //});
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine($"Category: {item.Category}, Average Price: {item.AveragePrice}");
+
+            //}
+            #endregion
+
+
             Console.ReadKey();
+
 
 
         }
